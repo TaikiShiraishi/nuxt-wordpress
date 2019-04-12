@@ -5,7 +5,7 @@ import pkg from './package'
 const apiUrl = 'http://necotiblog.wp.xdomain.jp'
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
 
   /*
    ** Headers of the page
