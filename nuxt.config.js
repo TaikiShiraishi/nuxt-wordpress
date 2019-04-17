@@ -1,3 +1,4 @@
+import path from 'path'
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 import axios from 'axios'
 import pkg from './package'
@@ -5,7 +6,7 @@ import pkg from './package'
 const apiUrl = 'http://necotiblog.wp.xdomain.jp'
 
 export default {
-  mode: 'spa',
+  mode: 'universal',
 
   /*
    ** Headers of the page
@@ -40,7 +41,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/vuetify'],
+  plugins: ['@/plugins/vuetify', '~/plugins/axios'],
 
   /*
    ** Nuxt.js modules
@@ -54,6 +55,10 @@ export default {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true
+  },
+  proxy: {
+    '/api': 'http://necotiblog.wp.xdomain.jp'
   },
 
   /*
@@ -113,5 +118,13 @@ export default {
   },
   env: {
     dev: process.env.NODE_ENV
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.vue', '.ts'],
+    root: path.resolve(__dirname),
+    alias: {
+      '@': path.resolve(__dirname),
+      '~': path.resolve(__dirname)
+    }
   }
 }
