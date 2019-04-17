@@ -53,21 +53,5 @@ export default {
       return { posts }
     })
   }
-  // created: function() {
-  //   const { $axios } = this
-  //   Promise.all([
-  //     $axios.$get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`),
-  //     $axios.$get(`${apiUrl}/wp-json/wp/v2/pages?per_page=100&page=1&_embed=1`)
-  //   ]).then(data => {
-  //     const posts = data[0]
-  //       .filter(post => post.categories.indexOf(2) >= 0)
-  //       .map(post => {
-  //         const date = new Date(post.date)
-  //         post.date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
-  //         return post
-  //       })
-  //     this.posts = posts
-  //   })
-  // }
 }
 </script>
