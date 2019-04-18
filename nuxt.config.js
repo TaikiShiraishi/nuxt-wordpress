@@ -96,7 +96,7 @@ export default {
           url: `${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`,
           headers: {
             'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
         }),
         axios({
@@ -104,7 +104,7 @@ export default {
           url: `${apiUrl}/wp-json/wp/v2/pages?per_page=100&page=1&_embed=1`,
           headers: {
             'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
         })
         // axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`),
