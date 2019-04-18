@@ -55,6 +55,7 @@ export default {
       })
     ]).then(
       data => {
+        console.log(data[0].data)
         const posts = data[0].data
           .filter(post => post.categories.indexOf(2) >= 0)
           .map(post => {

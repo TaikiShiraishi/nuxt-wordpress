@@ -4,6 +4,8 @@ import axios from 'axios'
 import pkg from './package'
 
 const apiUrl = 'http://necotiblog.wp.xdomain.jp'
+axios.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded'
 
 export default {
   mode: 'universal',
@@ -101,7 +103,7 @@ export default {
           },
           headers: {
             'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
           }
         }),
         axios({
@@ -114,7 +116,7 @@ export default {
           },
           headers: {
             'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'json'
           }
         })
       ]).then(
