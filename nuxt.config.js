@@ -93,7 +93,12 @@ export default {
       return Promise.all([
         axios({
           method: 'get',
-          url: `${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`,
+          url: `${apiUrl}/wp-json/wp/v2/posts`,
+          params: {
+            per_page: 100,
+            page: 1,
+            _embed: 1
+          },
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -101,7 +106,12 @@ export default {
         }),
         axios({
           method: 'get',
-          url: `${apiUrl}/wp-json/wp/v2/pages?per_page=100&page=1&_embed=1`,
+          url: `${apiUrl}/wp-json/wp/v2/pages`,
+          params: {
+            per_page: 100,
+            page: 1,
+            _embed: 1
+          },
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -113,6 +123,7 @@ export default {
         data => {
           const posts = data[0]
           const pages = data[1]
+          console.log(posts)
           return posts.data
             .map(post => {
               return {
