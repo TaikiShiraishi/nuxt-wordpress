@@ -40,7 +40,7 @@ export default {
   asyncData({ $axios }) {
     const apiUrl = 'http://necotiblog.wp.xdomain.jp'
     return Promise.all([
-      $axios.$get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`),
+      $axios.$get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`)
     ]).then(
       data => {
         const posts = data[0]
@@ -52,7 +52,7 @@ export default {
           })
         return { posts }
       },
-      err => console.error('index promise error' + err)
+      err => console.log('index promise error' + err)
     )
   }
 }

@@ -113,7 +113,7 @@ export default {
               })
             )
         },
-        err => console.err('nuxt.config.js fetch error:' + err)
+        err => console.log('nuxt.config.js fetch error:' + err)
       )
     }
   },
