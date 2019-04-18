@@ -4,8 +4,6 @@ import axios from 'axios'
 import pkg from './package'
 
 const apiUrl = 'http://necotiblog.wp.xdomain.jp'
-axios.defaults.headers.post['Content-Type'] =
-  'application/x-www-form-urlencoded'
 
 export default {
   mode: 'universal',
@@ -93,32 +91,8 @@ export default {
     interval: 1000,
     routes() {
       return Promise.all([
-        axios({
-          method: 'get',
-          url: `${apiUrl}/wp-json/wp/v2/posts`,
-          params: {
-            per_page: 100,
-            page: 1,
-            _embed: 1
-          },
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          }
-        }),
-        axios({
-          method: 'get',
-          url: `${apiUrl}/wp-json/wp/v2/pages`,
-          params: {
-            per_page: 100,
-            page: 1,
-            _embed: 1
-          },
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'json'
-          }
-        })
+        axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`),
+        axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&pages=1&_embed=1`)
       ]).then(
         data => {
           const posts = data[0]
