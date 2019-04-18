@@ -55,7 +55,7 @@ export default {
       })
     ]).then(
       data => {
-        const posts = data[0]
+        const posts = data[0].data
           .filter(post => post.categories.indexOf(2) >= 0)
           .map(post => {
             const date = new Date(post.date)
