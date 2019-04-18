@@ -93,27 +93,28 @@ export default {
       return Promise.all([
         axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`),
         axios.get(`${apiUrl}/wp-json/wp/v2/pages?per_page=100&page=1&_embed=1`)
-      ]).then(data => {
-        const posts = data[0]
-        const pages = data[1]
-        return posts.data
-          .map(post => {
-            return {
-              // route: '/post/' + post.slug,
-              route: '/posts/' + post.id,
-              payload: post
-            }
-          })
-          .concat(
-            pages.data.map(page => {
+      ]).then(
+        data => {
+          const posts = data[0]
+          const pages = data[1]
+          return posts.data
+            .map(post => {
               return {
-                // route: page.slug,
-                route: '' + page.id,
-                payload: page
+                route: '/posts/' + post.id,
+                payload: post
               }
             })
-          )
-      })
+            .concat(
+              pages.data.map(page => {
+                return {
+                  route: '' + page.id,
+                  payload: page
+                }
+              })
+            )
+        },
+        err => console.err('nuxt.config.js fetch error:' + err)
+      )
     }
   },
   env: {
