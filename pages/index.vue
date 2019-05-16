@@ -39,6 +39,7 @@ export default {
   },
   asyncData({ $axios }) {
     const apiUrl = 'http://necotiblog.wp.xdomain.jp'
+    console.log('index asyncData')
     return $axios
       .$get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`)
       .then(
