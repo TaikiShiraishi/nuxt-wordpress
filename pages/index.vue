@@ -44,8 +44,8 @@ export default {
       .$get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1`)
       .then(
         data => {
-          console.log(data[0])
-          const posts = data[0]
+          // console.log(data[0])
+          const posts = data
             .filter(post => post.categories.indexOf(2) >= 0)
             .map(post => {
               const date = new Date(post.date)
