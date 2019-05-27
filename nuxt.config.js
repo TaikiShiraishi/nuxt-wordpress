@@ -3,7 +3,7 @@ import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 import axios from 'axios'
 import pkg from './package'
 
-const apiUrl = 'http://necotiblog.wp.xdomain.jp'
+const apiUrl = 'http://ec2-18-224-202-179.us-east-2.compute.amazonaws.com'
 
 export default {
   mode: 'universal',
@@ -91,34 +91,24 @@ export default {
     interval: 1000,
     routes() {
       return Promise.all([
-        axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1`),
-        axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&pages=1`)
+        axios.get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1&_embed=1`)
       ]).then(
         data => {
           const posts = data[0]
-          const pages = data[1]
-          return posts.data
-            .map(post => {
-              return {
-                route: '/posts/' + post.id,
-                payload: post
-              }
-            })
-            .concat(
-              pages.data.map(page => {
-                return {
-                  route: '' + page.id,
-                  payload: page
-                }
-              })
-            )
+          return posts.data.map(post => {
+            return {
+              route: '/posts/' + post.id,
+              payload: post
+            }
+          })
         },
         err => console.log('nuxt.config.js fetch error:' + err)
       )
     }
   },
   env: {
-    dev: process.env.NODE_ENV
+    dev: process.env.NODE_ENV,
+    apiBaseUrl: apiUrl
   },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.ts'],

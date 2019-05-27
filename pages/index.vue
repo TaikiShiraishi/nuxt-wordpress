@@ -38,20 +38,16 @@ export default {
     }
   },
   asyncData({ $axios }) {
-    const apiUrl = 'http://necotiblog.wp.xdomain.jp'
     console.log('index asyncData')
     return $axios
-      .$get(`${apiUrl}/wp-json/wp/v2/posts?per_page=100&page=1`)
+      .$get(`${process.env.apiBaseUrl}/wp-json/wp/v2/posts?per_page=100&page=1`)
       .then(
         data => {
-          // console.log(data[0])
-          const posts = data
-            .filter(post => post.categories.indexOf(2) >= 0)
-            .map(post => {
-              const date = new Date(post.date)
-              post.date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
-              return post
-            })
+          const posts = data.map(post => {
+            const date = new Date(post.date)
+            post.date = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
+            return post
+          })
           return { posts }
         },
         err => console.log('index promise error' + err)
