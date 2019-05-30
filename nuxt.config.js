@@ -3,7 +3,8 @@ import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 import axios from 'axios'
 import pkg from './package'
 
-const apiUrl = 'http://ec2-18-224-202-179.us-east-2.compute.amazonaws.com'
+// const apiUrl = 'http://ec2-18-224-202-179.us-east-2.compute.amazonaws.com'
+const apiUrl = 'https://necomesi.jp/blog'
 
 export default {
   mode: 'universal',
